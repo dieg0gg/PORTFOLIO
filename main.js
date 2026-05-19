@@ -202,7 +202,7 @@ exploreBtn.addEventListener('click', () => {
 
     const tl = gsap.timeline({
         onStart:    () => window.scrollTo(0, 0),
-        onComplete: () => lenis.start()
+        onComplete: () => { document.body.style.overflowY = 'auto'; lenis.start(); }
     });
 
     tl
@@ -225,6 +225,7 @@ exploreBtn.addEventListener('click', () => {
 function volverAlWelcome() {
     lenis.stop();
     lenis.scrollTo(0, { immediate: true });
+    document.body.style.overflowY = 'hidden';
 
     const tl = gsap.timeline();
 
@@ -263,5 +264,6 @@ if (new URLSearchParams(window.location.search).get('view') === 'projects') {
     gsap.set(welcomeScreen, { autoAlpha: 0 });
     gsap.set(mainPortfolio, { display: 'block' });
     montarProyectos().then(() => gsap.set(mainPortfolio, { autoAlpha: 1 }));
+    document.body.style.overflowY = 'auto';
     lenis.start();
 }
