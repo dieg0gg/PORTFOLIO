@@ -222,9 +222,23 @@ body {
         }
 
         .hero-body {
-            margin-left: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
 
-            p { font-size: 1rem; }
+            .hero-photos {
+                height: 260px;
+                padding: 0;
+                align-self: auto;
+
+                video.photo-1 { object-fit: cover; }
+                img.photo-2   { object-fit: cover; }
+            }
+
+            p {
+                font-size: 1rem;
+                max-width: 100%;
+            }
         }
     }
 
