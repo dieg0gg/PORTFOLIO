@@ -229,10 +229,10 @@ body {
             .hero-photos {
                 height: 260px;
                 padding: 0;
-                align-self: auto;
+                width: 100%;
 
-                video.photo-1 { object-fit: cover; }
-                img.photo-2   { object-fit: cover; }
+                video.photo-1 { flex: 6 1 0%; min-width: 0; object-fit: cover; }
+                img.photo-2   { flex: 4 1 0%; min-width: 0; object-fit: cover; }
             }
 
             p {
