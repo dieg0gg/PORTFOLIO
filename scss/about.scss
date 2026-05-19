@@ -1,0 +1,238 @@
+@use 'variables' as *;
+
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: $negro;
+    font-family: $font-body;
+    color: $blanco;
+    overflow-x: hidden;
+    animation: fadeIn 0.5s ease forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+// ─── NAV ───────────────────────────────────────────────────────────
+.portfolio-nav {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 46px 90px 40px 60px;
+    background: transparent;
+    z-index: 10;
+
+    #back-btn {
+        background: transparent;
+        border: none;
+        color: $blanco;
+        font-family: $font-secondary;
+        font-size: 1.5rem;
+        letter-spacing: 0.1em;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        transition: color 0.3s ease;
+        text-decoration: none;
+
+        &:hover { color: $azul; }
+
+        .material-symbols-rounded { font-size: 18px; }
+    }
+
+    #view-projects-btn {
+        background: transparent;
+        border: 1.5px solid $blanco;
+        color: $blanco;
+        font-family: $font-secondary;
+        font-size: 0.80rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        padding: 0.7rem 1.8rem;
+        cursor: pointer;
+        text-decoration: none;
+        transition: background 0.3s ease, border-color 0.3s ease;
+
+        &:hover {
+            background: $azul;
+            border-color: $azul;
+        }
+    }
+}
+
+// ─── HERO ────────────────────────────────────────────────────────────────
+.about-hero {
+    padding: 0px 90px 10px ;
+
+    .hero-headline {
+        border: 3px solid $azul;
+        padding: 10px 10px;
+        margin-bottom: 37px;
+
+        h1 {
+            font-family: $font-title;
+            font-size: 6rem;
+            font-weight: 750;
+            text-transform: uppercase;
+            line-height: 0.92;
+            letter-spacing: -0.01em;
+        }
+    }
+
+    .hero-body {
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    gap: 45px;
+    align-items: stretch;
+
+        .hero-photos {
+            display: flex;
+            flex-direction: row;
+            gap: 12px;
+            padding-top: 11px;
+            padding-bottom: 12px;
+            align-self: stretch;
+
+            img, video {
+                
+                height: 100%;
+                .photo-1 { aspect-ratio: 1/1.8; }
+                .photo-2 { aspect-ratio: 1/1.8; }
+                border: 2px solid $blanco;
+            }
+            video.photo-1 { width: 60%; object-fit: fill;}
+            img.photo-2   { width: 40%; object-fit: fill;}
+        }
+
+        p {
+            font-family: $font-body;
+            font-size: 1.70rem;
+            font-weight: $medium;
+            line-height: 1.55;
+            max-width: 650px;
+        }
+    }
+}
+@keyframes parpadeo {
+    0%, 100% { border-color: $azul; }
+    49%       { border-color: $azul; }
+    50%       { border-color: transparent; }
+    99%       { border-color: transparent; }
+}
+
+.hero-headline {
+    border: 2px solid $azul;
+    animation: parpadeo 1.2s step-end infinite;
+}
+// ─── CONTACTO ──────────────────────────────────────────────────────────────
+.about-contact {
+    background: $azul;
+    padding: 20px 90px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    .contact-left {
+        h2 {
+            font-family: $font-body;
+            font-size: 2rem;
+            font-weight: $regular;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-family: $font-secondary;
+            font-size: 0.85rem;
+            font-weight: $light;
+            line-height: 1.7;
+        }
+    }
+
+    .contact-right {
+        display: flex;
+        align-items: flex-start;
+
+        p {
+            font-family: $font-secondary;
+            font-size: 1rem;
+            font-weight: $light;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            padding-top: 10px;
+        }
+    }
+}
+
+// ─── TICKER tutorial (lo q gira)───────────────────────────────────────────────────────
+.ticker-wrap {
+    background: $negro;
+    padding: 10px 0;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.ticker-inner {
+    display: inline-block;
+    animation: ticker 14s linear infinite;
+
+    span {
+        font-family: $font-body;
+        font-size: 0.9rem;
+        font-weight: $black;
+        color: $blanco;
+        letter-spacing: 0.2em;
+        margin: 0 20px;
+        display: inline-block;
+        transform: scaleY(1.8);
+    }
+}
+
+@keyframes ticker {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+}
+
+// ─── RESPONSIVE ───────────────────────────────────────────────────────────────
+@media (max-width: 768px) {
+    .portfolio-nav {
+        padding: 20px 24px;
+    }
+
+    .portfolio-nav #view-projects-btn {
+        font-size: 0.7rem;
+        padding: 0.55rem 1rem;
+    }
+
+    .about-hero {
+        padding: 24px 20px 60px;
+
+        .hero-headline {
+            padding: 20px 20px;
+            margin-bottom: 40px;
+
+            h1 { font-size: clamp(2rem, 8vw, 3rem); }
+        }
+
+        .hero-body {
+            margin-left: 0;
+
+            p { font-size: 1rem; }
+        }
+    }
+
+    .about-contact {
+        padding: 36px 20px;
+        flex-direction: column;
+        gap: 32px;
+
+        .contact-left h2 { font-size: 1.5rem; }
+    }
+}

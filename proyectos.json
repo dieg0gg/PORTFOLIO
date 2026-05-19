@@ -1,0 +1,44 @@
+[
+    {
+        "id": 1,
+        "title": "“UNTITLED”",
+        "categories": ["Photography", "Styling", "Creative Direction"],
+        "image": "assets/img/proyekto.tif",
+        "link": "#"
+    },
+    {
+        "id": 2,
+        "title": "03/01/2025",
+        "categories": ["editorial", "Experimental"], 
+        "image": "assets/img/03012026.jpg",
+        "link": "#"
+    },
+    {
+        "id": 3,
+        "title": "ran out lyric video",
+        "categories": ["Motion Graphics", "Typography" ],
+        "image": "assets/img/ranout.png",
+        "link": "#"
+    },
+    {
+        "id": 4,
+        "title": "YSL vfx video",
+        "categories": ["Motion Graphics", "VFX", "Typography"],
+        "image": "assets/img/YSL.jpg",
+        "link": "#"
+    },
+    {
+        "id": 5,
+        "title": "STYX The shoe brand",
+        "categories": ["Branding", "Photography", "Creative Direction"],
+        "image": "assets/img/STYX.png",
+        "link": "#"
+    },
+    {
+        "id": 6,
+        "title": "Bandcamp identity",
+        "categories": ["Branding", "Design System"],
+        "image": "assets/img/BANDCAMP.png",
+        "link": "#"
+    }
+]

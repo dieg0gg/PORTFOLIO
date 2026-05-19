@@ -1,0 +1,490 @@
+@use 'variables' as *;
+
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: $negro;
+    font-family: $font-body;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+// ─── WELCOME LANDING DGG ───────────────────────────────────────────────────────────
+#welcome-screen {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: $negro;
+    z-index: 10;
+}
+
+.welcome-content {
+    position: relative;
+    width: 100%; height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 5;
+
+    .main-title {
+        display: inline-block;
+        font-size: clamp(3rem, 15vw, 8.5rem);
+        font-weight: $black;
+        font-family: $font-body;
+        color: $blanco;
+        text-transform: uppercase;
+        letter-spacing: -0.06em;
+        line-height: 0.75;
+        cursor: default;
+        transform: scaleY(4.2);
+        transform-origin: center center;
+        will-change: transform;
+        padding: 20px 40px;
+        margin-bottom: 2rem;
+    }
+
+    .subtitle {
+        position: absolute;
+        top: 30px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 90%;
+        max-width: 1400px;
+        display: flex;
+        justify-content: space-between;
+        color: $blanco;
+        text-transform: lowercase;
+        font-family: $font-secondary;
+        font-weight: $thin;
+        font-size: 0.75rem;
+        pointer-events: none;
+    }
+}
+
+// ─── BOTONES PROYECTO Y ABOUT──────────────────────────────────────────────────────────────────
+.btn-group {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 16px;
+    z-index: 100;
+}
+
+#explore-btn {
+    padding: 1rem 2.5rem;
+    background: transparent;
+    border: 1px solid $blanco;
+    cursor: pointer;
+    font-family: $font-secondary;
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color:$blanco;
+    transition: background 0.3s ease, color 0.3s ease, transform 0.3s ease;
+    white-space: nowrap;
+
+    &:hover {
+        background: $azul;
+        border:$azul;
+        color: $blanco;
+        transform: scale(1.05);
+    }
+}
+#about-btn {
+    padding: 1rem 2.5rem;
+    background: transparent;
+    border: 1px solid $blanco;
+    cursor: pointer;
+    font-family: $font-secondary;
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color:$blanco;
+    transition: background 0.3s ease, color 0.3s ease, transform 0.3s ease;
+    white-space: nowrap;
+
+    &:hover {
+        background: $azul;
+        border:$azul;
+        color: $blanco;
+        transform: scale(1.05);
+    }
+}
+
+// ─── MAIN PORTFOLIO ───────────────────────────────────────────────────────────
+#main-portfolio {
+    visibility: hidden;
+    opacity: 0;
+    display: none;
+    width: 100%;
+    min-height: 100vh;
+    background-color: $negro;
+    position: relative;
+    z-index: 5;
+    color: $blanco;
+}
+
+// ─── NAV (con boton a get to know me)──────────────────────────────────────────────────────────────────────
+.portfolio-nav {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 40px 90px 40px 60px;
+    background: transparent;
+    z-index: 10;
+
+    #back-btn {
+        background: transparent;
+        border: none;
+        color: $blanco;
+        font-family: $font-secondary;
+        font-size: 1.5rem;
+        letter-spacing: 0.1em;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        transition: color 0.3s ease;
+
+        &:hover { color:$azul; }
+
+        .material-symbols-rounded {
+            font-size: 18px;
+        }
+    }
+ 
+    #about-btn-portfolio {
+        background: transparent;
+        border: 1.5px solid $blanco;
+        color: $blanco;
+        font-family: $font-secondary;
+        font-size: 0.80rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        padding: 0.7rem 1.8rem;
+        cursor: pointer;
+        transition: background 0.3s ease, border-color 0.3s ease;
+ 
+        &:hover {
+            background: $azul;
+            border-color: $azul;
+        }
+    }
+}
+ 
+// ─── CARRUSEL (tutorial no tocar) ─────────────────────────────────────────────────────────────────
+.carrusel-section {
+    position: relative;
+    width: 100%;
+    height: 85vh;
+    margin-top: 0px;
+    overflow: hidden;
+}
+ 
+.carrusel {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+ 
+.carrusel-item {
+    position: absolute;
+    background: #2a2a2a;
+    transition: width 0.8s cubic-bezier(0.455, 0.03, 0.515, 0.955),
+                height 0.8s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+    will-change: top, left, opacity, filter;
+
+    &.far-left {
+        width: 330px;
+        height: 170px;
+        top: 1%;
+        left: 10%;
+        z-index: 1;
+    }
+
+    &.mid-left {
+        width: 350px;
+        height: 190px;
+        top: 15%;
+        left: 22%;
+        z-index: 3;
+    }
+
+    &.center {
+        width: 420px;
+        height: 240px;
+        top: 23%;
+        left: 35%;
+        z-index: 6;
+    }
+
+    &.near-right {
+        width: 380px;
+        height: 200px;
+        top: 37%;
+        left: 50%;
+        z-index: 4;
+    }
+
+    &.mid-right {
+        width: 350px;
+        height: 190px;
+        top: 45%;
+        left: 68%;
+        z-index: 2;
+    }
+
+    &.far-right {
+        width: 330px;
+        height: 170px;
+        top: 54%;
+        left: 86%;
+        z-index: 1;
+    }
+}
+ 
+// ─── SKILLS ───────────────────────────────────────────────────────────────────
+.skills-list {
+    position: absolute;
+    bottom: 170px;
+    left: 90px;
+    display: flex;
+    flex-direction: column;
+    z-index: 10;
+ 
+    span {
+        font-family: $font-body;
+        font-size: 2rem;
+        font-weight: $light;
+        color: $blanco;
+        line-height: 1;
+        letter-spacing: 0.01em;
+        &:hover {
+            color: $azul;
+        }
+    }
+   
+}
+ 
+.scroll-arrow {
+    position: absolute;
+    bottom: 32px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    color: $blanco;
+    opacity: 1;
+    z-index: 10;
+    animation: bounce 2s infinite;
+
+    .material-symbols-rounded {
+        font-family: 'Material Symbols Rounded';
+        font-size: 66px;
+        font-variation-settings: 'wght' 100;
+        font-style: normal;
+        display: block;
+    }
+}
+ 
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50%       { transform: translateY(6px); }
+}
+ 
+// ─── GRID PROYECTOS ───────────────────────────────────────────────────────────
+.proyectos-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    padding: 50px 90px;
+    gap: 2.3rem;
+    row-gap: 100px;
+    padding-bottom: 60px;
+}
+ 
+.proyecto-card {
+    padding-right: 24px;
+    cursor: pointer;
+ 
+    .proyecto-title {
+        font-family: $font-title;
+        font-size: 2.8rem;
+        font-weight: $bold;
+        color: $blanco;
+        text-transform: uppercase;
+        letter-spacing: 0.03em;
+        margin-bottom: 10px;
+    }
+
+    .proyecto-thumb {
+        width: 100%;
+        aspect-ratio: 5/3;
+        background: #1a1a1a;
+        overflow: hidden;
+        margin-bottom: 10px;
+        border: 4px solid;
+        border-color: $blanco;
+        &:hover { border-color: $azul;}
+
+    }
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.4s ease;
+
+        }
+    
+ 
+    &:hover .proyecto-thumb img {
+        transform: scale(1.03);
+    }
+ 
+    .proyecto-cats {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+ 
+        span {
+            font-family: $font-secondary;
+            font-size: 0.80rem;
+            color: #cbcbcb;
+            letter-spacing: 0.03em;
+            &:hover {
+                color: $azul;
+            }
+        }
+    }
+}
+ 
+// ─── TICKER en azul ───────────────────────────────────────────────────────────────────
+.ticker-wrap {
+    background: $azul;
+    padding: 8px 0;
+    overflow: hidden;
+    white-space: nowrap;
+    margin-top: 24px;
+}
+ 
+.ticker-inner {
+    display: inline-block;
+    animation: ticker 14s linear infinite;
+ 
+    span {
+        font-family: $font-body;
+        font-size: 0.9rem;
+        font-weight: $black;
+        color: $blanco;
+        letter-spacing: 0.2em;
+        margin: 0 20px;
+        margin-bottom: 0.4rem;
+        display: inline-block;
+        transform: scaleY(1.8);
+    }
+}
+ 
+@keyframes ticker {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+}
+
+// ─── RESPONSIVE MOBILE ────────────────────────────────────────────────────────
+@media (max-width: 768px) {
+
+    .welcome-content .main-title {
+        padding: 10px 20px;
+    }
+
+    .welcome-content .subtitle {
+        font-size: 0.6rem;
+        top: 16px;
+        gap: 4px;
+    }
+
+    .btn-group {
+        flex-direction: column;
+        align-items: stretch;
+        width: calc(100% - 48px);
+        gap: 10px;
+        bottom: 32px;
+    }
+
+    #explore-btn, #about-btn {
+        padding: 0.9rem 1.5rem;
+        text-align: center;
+    }
+
+    .portfolio-nav {
+        padding: 20px 24px;
+    }
+
+    .portfolio-nav #about-btn-portfolio {
+        font-size: 0.7rem;
+        padding: 0.55rem 1rem;
+    }
+
+    .carrusel-section {
+        height: auto;
+        padding: 36px 24px 52px;
+        overflow: visible;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .carrusel {
+        display: none;
+    }
+
+    .skills-list {
+        position: relative;
+        bottom: auto;
+        left: auto;
+
+        span {
+            font-size: 2.4rem;
+            line-height: 1.1;
+        }
+    }
+
+    .scroll-arrow {
+        position: relative;
+        bottom: auto;
+        left: auto;
+        right: auto;
+    }
+
+    .proyectos-grid {
+        grid-template-columns: 1fr;
+        padding: 32px 20px 60px;
+        gap: 0;
+        row-gap: 48px;
+    }
+
+    .proyecto-card {
+        padding-right: 0;
+
+        .proyecto-title {
+            font-size: 1.8rem;
+        }
+    }
+
+    .ticker-wrap {
+        margin-top: 16px;
+    }
+}
+ 
